@@ -8,6 +8,7 @@ from src.authenticates.exception_handlers import invalid_password_exception_hand
 from src.authenticates.exceptions import InvalidPasswordException, InvalidAccessTokenException, \
     EmptyAccessTokenException
 from src.authenticates.router import auth_router
+from src.tires.router import tires_router
 from src.users.exception_handlers import user_id_duplicated_exception_handler, user_not_found_exception_handler
 from src.users.exceptions import UserIdDuplicatedException, UserNotFoundException
 from src.users.router import users_router
@@ -16,6 +17,7 @@ app = FastAPI()
 
 app.include_router(users_router)
 app.include_router(auth_router)
+app.include_router(tires_router)
 
 app.add_exception_handler(UserIdDuplicatedException, user_id_duplicated_exception_handler)
 app.add_exception_handler(UserNotFoundException, user_not_found_exception_handler)

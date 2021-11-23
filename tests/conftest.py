@@ -4,6 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 from src.configs.database import Base
 from src.users.infra.orm import User
+from src.tires.infra.orm import Tire
 
 
 pytest_plugins = [
