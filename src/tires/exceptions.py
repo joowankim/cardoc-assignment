@@ -1,1 +1,2 @@
-
+class DataSourceError(RuntimeError):
+    pass

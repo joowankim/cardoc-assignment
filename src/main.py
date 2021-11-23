@@ -8,6 +8,8 @@ from src.authenticates.exception_handlers import invalid_password_exception_hand
 from src.authenticates.exceptions import InvalidPasswordException, InvalidAccessTokenException, \
     EmptyAccessTokenException
 from src.authenticates.router import auth_router
+from src.tires.exception_handlers import data_source_error_handler
+from src.tires.exceptions import DataSourceError
 from src.tires.router import tires_router
 from src.users.exception_handlers import user_id_duplicated_exception_handler, user_not_found_exception_handler
 from src.users.exceptions import UserIdDuplicatedException, UserNotFoundException
@@ -24,6 +26,7 @@ app.add_exception_handler(UserNotFoundException, user_not_found_exception_handle
 app.add_exception_handler(InvalidPasswordException, invalid_password_exception_handler)
 app.add_exception_handler(InvalidAccessTokenException, invalid_access_token_exception_handler)
 app.add_exception_handler(EmptyAccessTokenException, empty_access_token_exception_handler)
+app.add_exception_handler(DataSourceError, data_source_error_handler)
 
 
 @app.exception_handler(RequestValidationError)
