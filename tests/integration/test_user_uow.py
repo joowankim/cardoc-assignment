@@ -6,7 +6,7 @@ from sqlalchemy.exc import IntegrityError
 
 from src.users.application.unit_of_work import SqlUserUnitOfWork
 from src.users.domain import models
-from src.users.exceptions import UserNotFoundException
+from src.users.exceptions import UserNotFoundException, UserIdDuplicatedException
 
 
 def insert_user(session):
@@ -39,11 +39,10 @@ def test_add_user_with_duplicated_id(session_factory):
     insert_user(session)
     session.commit()
 
-    new_user = models.User(id="cherry", password="123qwe")
+    duplicated_id_user = models.User(id="cherry", password="123qwe")
     uow = SqlUserUnitOfWork(session_factory)
     with uow:
-        uow.users.add(new_user)
-        assert_that(uow.commit).raises(IntegrityError).when_called_with()
+        assert_that(uow.users.add).raises(UserIdDuplicatedException).when_called_with(duplicated_id_user)
 
 
 def test_get_user_with_exist_id(session_factory):

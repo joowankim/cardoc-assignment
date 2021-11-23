@@ -281,5 +281,6 @@ cython_debug/
 
 
 .idea
-sqlite.db
+*/sqlite.db
 .env
+*/test.db

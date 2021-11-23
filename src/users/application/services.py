@@ -7,7 +7,11 @@ class UserRegistry:
         self.uow = uow
 
     def register(self, user: User):
-        pass
+        with self.uow:
+            self.uow.users.add(user)
+            self.uow.commit()
 
     def user(self, id: str):
-        pass
+        with self.uow:
+            user = self.uow.users.get(id)
+        return user
