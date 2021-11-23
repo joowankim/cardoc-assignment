@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from src.configs.database import Base
+from src.users.infra.orm import User
 
 
 pytest_plugins = [
