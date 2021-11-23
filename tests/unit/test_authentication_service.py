@@ -16,7 +16,7 @@ def access_token(user):
     return "Bearer " + jwt.encode({"user_id": user.id}, key=authenticate.SECRET, algorithm=authenticate.ALGORITHM)
 
 
-def test_get_access_token_with_valid_login_info(authentication_service):
+def test_get_access_token_with_correct_login_info(authentication_service):
     new_user = models.User(id="cherry", password="123qwe")
     insert_user(authentication_service.registry, new_user)
 
