@@ -1,5 +1,6 @@
 import pytest
 
+from src.authenticates.application.services import AuthenticationService
 from src.users.application.services import UserRegistry
 from src.users.application.unit_of_work import AbstractUserUnitOfWork
 from src.users.domain import models
@@ -40,3 +41,8 @@ class FakeUserUnitOfWork(AbstractUserUnitOfWork):
 @pytest.fixture
 def user_registry():
     return UserRegistry(FakeUserUnitOfWork())
+
+
+@pytest.fixture
+def authentication_service(user_registry):
+    return AuthenticationService(user_registry)

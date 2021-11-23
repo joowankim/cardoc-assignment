@@ -3,15 +3,19 @@ from fastapi.exceptions import RequestValidationError
 from starlette import status
 from starlette.responses import JSONResponse
 
-from src.users.exception_handlers import user_id_duplicated_exception
-from src.users.exceptions import UserIdDuplicatedException
+from src.authenticates.exception_handlers import invalid_password_exception_handler
+from src.authenticates.exceptions import InvalidPasswordException
+from src.users.exception_handlers import user_id_duplicated_exception_handler, user_not_found_exception_handler
+from src.users.exceptions import UserIdDuplicatedException, UserNotFoundException
 from src.users.router import users_router
 
 app = FastAPI()
 
 app.include_router(users_router)
 
-app.add_exception_handler(UserIdDuplicatedException, user_id_duplicated_exception)
+app.add_exception_handler(UserIdDuplicatedException, user_id_duplicated_exception_handler)
+app.add_exception_handler(UserNotFoundException, user_not_found_exception_handler)
+app.add_exception_handler(InvalidPasswordException, invalid_password_exception_handler)
 
 
 @app.exception_handler(RequestValidationError)
