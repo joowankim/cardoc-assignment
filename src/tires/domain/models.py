@@ -1,7 +1,7 @@
 from enum import Enum
 
 from fastapi_camelcase import CamelModel
-from pydantic import conint
+from pydantic import conint, BaseModel
 
 
 class TirePosition(Enum):
@@ -19,3 +19,11 @@ class Tire(CamelModel):
 
     class Config:
         orm_mode = True
+
+
+class TireInfo(BaseModel):
+    trim_id: int
+    position: TirePosition
+    width: conint(gt=0)
+    flatness_ratio: conint(gt=0)
+    wheel_size: conint(gt=0)
