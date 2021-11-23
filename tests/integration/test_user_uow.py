@@ -42,7 +42,9 @@ def test_add_user_with_duplicated_id(session_factory):
     duplicated_id_user = models.User(id="cherry", password="123qwe")
     uow = SqlUserUnitOfWork(session_factory)
     with uow:
-        assert_that(uow.users.add).raises(UserIdDuplicatedException).when_called_with(duplicated_id_user)
+        assert_that(uow.users.add)\
+            .raises(UserIdDuplicatedException)\
+            .when_called_with(duplicated_id_user)
 
 
 def test_get_user_with_exist_id(session_factory):
@@ -62,5 +64,7 @@ def test_get_user_with_not_exist_id(session_factory):
     non_exist_user_id = "cherry"
     uow = SqlUserUnitOfWork(session_factory)
     with uow:
-        assert_that(uow.users.get).raises(UserNotFoundException).when_called_with(non_exist_user_id)
+        assert_that(uow.users.get)\
+            .raises(UserNotFoundException)\
+            .when_called_with(non_exist_user_id)
 

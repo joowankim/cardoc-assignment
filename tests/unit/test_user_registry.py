@@ -16,7 +16,9 @@ def test_register_user_with_duplicated_id(user_registry):
     user_registry.register(new_user)
 
     duplicated_id_user = models.User(id="cherry", password="23wqeqwe")
-    assert_that(user_registry.register).raises(UserIdDuplicatedException).when_called_with(duplicated_id_user)
+    assert_that(user_registry.register)\
+        .raises(UserIdDuplicatedException)\
+        .when_called_with(duplicated_id_user)
 
 
 def test_get_user_with_exist_id(user_registry):
@@ -29,4 +31,6 @@ def test_get_user_with_exist_id(user_registry):
 
 def test_get_user_with_non_exist_id(user_registry):
     non_exist_user_id = "cherry"
-    assert_that(user_registry.user).raises(UserNotFoundException).when_called_with(non_exist_user_id)
+    assert_that(user_registry.user)\
+        .raises(UserNotFoundException)\
+        .when_called_with(non_exist_user_id)
