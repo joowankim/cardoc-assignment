@@ -111,10 +111,12 @@
 
 ### 구현된 엔드포인트
 
+엔드포인트 POSTMAN 문서: https://documenter.getpostman.com/view/12446432/UVJZpypz
+
 - `POST /users`: 회원가입
 - `POST /auth`: 로그인(액세스 토큰 발급)
 - `POST /tires`: 사용자가 소유한 타이어 정보 저장 
-- `GET /tires`: 사용자가 소유한 타이어 정보 조회
+- `GET /tires`: 로그인한 사용자가 소유한 타이어 정보 조회
 
 ### 애플리케이션 구조
 
@@ -190,7 +192,7 @@
     $ docker-compose up -d
     ```
 
-5. 애플리케이션에 접근하기
+5. 로컬에서 실행된 애플리케이션에 접근하기
 
     ```
     http://localhost:8000
@@ -198,12 +200,12 @@
 
 ## 8️⃣ 과제 결과물 테스트 및 확인 방법
 
-1. POSTMAN 확인: 
+1. POSTMAN 확인: https://documenter.getpostman.com/view/12446432/UVJZpypz
 
 2. 배포된 서버의 주소
 
     ```commandline
-    
+    http://3.37.127.222:8000
     ```
 
 # 8️⃣ Reference
