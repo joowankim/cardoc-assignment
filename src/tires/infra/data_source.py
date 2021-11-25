@@ -26,10 +26,10 @@ class WebCarDataSource(AbstractCarDataSource):
         self.host = host
         self.api_version = api_version
 
-    def get_tires_of(self, trim_id: int) -> List[models.TireInfo]:
+    def get_tires_of(self, trim_id: int, timeout_seconds=3) -> List[models.TireInfo]:
         url = '/'.join([self.host, self.api_version, "trim", str(trim_id)])
         try:
-            response = requests.get(url)
+            response = requests.get(url, timeout=timeout_seconds)
         except Exception:
             raise DataSourceError("data source has an error")
         else:
