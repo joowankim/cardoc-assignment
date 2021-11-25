@@ -8,7 +8,7 @@ class Tire(Base):
     __tablename__ = "tires"
 
     tire_id = Column(Integer, primary_key=True, autoincrement=True)
-    owner_id = Column(String, foreign_key=ForeignKey("users.id"))
+    owner_id = Column(String, ForeignKey("users.id"))
     trim_id = Column(Integer)
     position = Column("position", Enum(TirePosition))
     width = Column(Integer)
